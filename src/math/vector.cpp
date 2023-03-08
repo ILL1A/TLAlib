@@ -1,47 +1,56 @@
+#ifndef _VECTOR_CPP_
+#define _VECTOR_CPP_ 1
+
 #include "TLA/math/vector.h"
+#include "TLA/exceptions.h"
+#include <vector>
+#include <initializer_list>
 
 namespace tla {
 	namespace vector {
-		template <typename T, class U = vector <int>>
-		class Vector {
-		private:
-			T* vec;
-			int vec_size;
-		public:
-			Vector (initializer_list <T> clist) {
-				vec_size = clist.size();
-				vec = new T[vector_size];
-				for (int i = 0; i < vector_size; i ++) {
-					*(vec + i) = clist[i];
-				}
-			}
-			Vector (T* ptr, int sz) {
-				vec_size = sz;
-				vec = new T[vector_size];
-				for (int i = 0; i < len; i ++) {
-					*(vec + i) = &(*(ptr + i));
-				}
-			}
-			Vector (vector <T> vec) {
-				vec_size = vec.size();
-				vector <T>::iterator it = vec.begin();
-				vec = new T[vector_size];
-				for (int i = 0; i < vector_size; i ++) {
-					*(vec + i) = &(*it);
-					if (i < vector_size - 1) it = next(it);
-				}
-			}
-			Vector (U::iterator it, int sz) {
-				vec_size = sz;
-				vec = new T[vector_size];
-				for (int i = 0; i < vector_size; i ++) {
-					*(vec + i) = &(*it);
-					if (i < vector_size - 1) it = next(it);
-				}
-			}
-			T get(int idx) {
-				
+		template <typename T, class U>
+		inline Vector<T, U>::Vector (std::initializer_list <T> clist) {
+			vector_size_ = clist.size();
+			vector_ = new T[vector_size_];
+			int i = 0;
+			for (auto it : clist) {
+				*(vector_ + i) = it;
+				i ++;
 			}
 		}
+		template <typename T, class U>
+		inline Vector<T, U>::Vector (T* ptr, int sz) {
+			vector_size_ = sz;
+			vector_ = new T[vector_size_];
+			for (int i = 0; i < sz; i ++) {
+				*(vector_ + i) = *(ptr + i);
+			}
+		}
+		template <typename T, class U>
+		inline Vector<T, U>::Vector (std::vector <T> vec) {
+			vector_size_ = vec.size();
+			typename std::vector <T>::iterator it = vec.begin();
+			vector_ = new T[vector_size_];
+			for (int i = 0; i < vector_size_; i ++) {
+				*(vector_ + i) = *it;
+				if (i < vector_size_ - 1) it = next(it);
+			}
+		}
+		template <typename T, class U>
+		inline Vector<T, U>::Vector (U::iterator it, int sz) {
+			vector_size_ = sz;
+			vector_ = new T[vector_size_];
+			for (int i = 0; i < vector_size_; i ++) {
+				*(vector_ + i) = *it;
+				if (i < vector_size_ - 1) it = next(it);
+			}
+		}
+		template <typename T, class U>
+		inline T& Vector<T, U>::operator[](int index) {
+			if (index >= vector_size_ || index < 0) throw IndexOutsideTheVector("Index is outside the vector borders");
+	        return *(vector_ + index);
+	    }
 	}
 }
+
+#endif // _VECTOR_CPP_
