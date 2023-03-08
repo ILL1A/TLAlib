@@ -1,4 +1,4 @@
-#ifndef _Vector_H_
-#define _Vector_ 1
+#ifndef _VECTOR_H_
+#define _VECTOR_H_ 1
 
-#endif // _Vector_H_
+#endif // _VECTOR_H_
