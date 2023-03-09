@@ -10,13 +10,19 @@ namespace tla {
 		class Vector {
 		private:
 			T* vector_;
-			int vector_size_;
+			size_t size_;
+			size_t capacity_;
 		public:
-			Vector (std::initializer_list <T> clist);
-			Vector (T* ptr, int sz);
-			Vector (std::vector <T> vec);
-			Vector (U::iterator it, int sz);
-			T& operator[](int index);
+			Vector();
+			Vector(std::initializer_list <T> clist);
+			Vector(T* ptr, size_t sz);
+			Vector(std::vector <T> vec);
+			Vector(U::iterator it, size_t sz);
+			void push_back(const T& value);
+			void pop_back();
+			size_t capacity();
+			size_t size();
+			T& operator[](size_t index);
 		};
 	}
 }
