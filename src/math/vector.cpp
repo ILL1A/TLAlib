@@ -9,7 +9,7 @@
 namespace tla {
 	namespace vector {
 		template <typename T, class U>
-		inline Vector<T, U>::Vector (std::initializer_list <T> clist) {
+		Vector<T, U>::Vector (std::initializer_list <T> clist) {
 			vector_size_ = clist.size();
 			vector_ = new T[vector_size_];
 			int i = 0;
@@ -19,7 +19,7 @@ namespace tla {
 			}
 		}
 		template <typename T, class U>
-		inline Vector<T, U>::Vector (T* ptr, int sz) {
+		Vector<T, U>::Vector (T* ptr, int sz) {
 			vector_size_ = sz;
 			vector_ = new T[vector_size_];
 			for (int i = 0; i < sz; i ++) {
@@ -27,7 +27,7 @@ namespace tla {
 			}
 		}
 		template <typename T, class U>
-		inline Vector<T, U>::Vector (std::vector <T> vec) {
+		Vector<T, U>::Vector (std::vector <T> vec) {
 			vector_size_ = vec.size();
 			typename std::vector <T>::iterator it = vec.begin();
 			vector_ = new T[vector_size_];
@@ -37,7 +37,7 @@ namespace tla {
 			}
 		}
 		template <typename T, class U>
-		inline Vector<T, U>::Vector (U::iterator it, int sz) {
+		Vector<T, U>::Vector (U::iterator it, int sz) {
 			vector_size_ = sz;
 			vector_ = new T[vector_size_];
 			for (int i = 0; i < vector_size_; i ++) {
