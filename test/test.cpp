@@ -1,5 +1,4 @@
-#include "TLA/math/vector.h"
-#include "TLA/exceptions.h"
+#include "tla.h"
 #include <iostream>
 #include <iterator>
 
