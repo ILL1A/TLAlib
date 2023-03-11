@@ -1,0 +1,4 @@
+#ifndef _MATRIX_EXCEPTIONS_H_
+#define _MATRIX_EXCEPTIONS_H_ 1
+
+#endif // _MATRIX_EXCEPTIONS_H_
