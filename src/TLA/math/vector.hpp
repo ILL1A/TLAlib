@@ -1,8 +1,8 @@
 #ifndef _VECTOR_H_
 #define _VECTOR_H_ 1
 
-#include "TLA/iterators/iterator.h"
-#include "TLA/exceptions/vector_exceptions.h"
+#include "TLA/iterators/iterator.hpp"
+#include "TLA/exceptions/vector_exceptions.hpp"
 #include <vector>
 #include <initializer_list>
 
