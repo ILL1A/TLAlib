@@ -1,6 +1,7 @@
 #ifndef _VECTOR_CPP_
 #define _VECTOR_CPP_ 1
 
+#include "TLA/iterators/iterator.h"
 #include "TLA/math/vector.h"
 #include "TLA/exceptions.h"
 #include <vector>
@@ -8,6 +9,98 @@
 
 namespace tla {
 	namespace vector {
+		// template <typename T, class U>
+		// Vector<T, U>::iterator::iterator(T* ptr) : ptr_((void*)ptr) {}
+		// template <typename T, class U>
+		// T& Vector<T, U>::iterator::operator*() const {
+		// 	return *((T*)ptr_);
+		// }
+		// template <typename T, class U>
+		// T* Vector<T, U>::iterator::operator->() {
+		// 	return (T*)ptr_;
+		// }
+		// template <typename T, class U>
+		// Vector<T, U>::iterator& Vector<T, U>::iterator::operator++() {
+		// 	ptr_ ++;
+		// 	return *this;
+		// }
+		// template <typename T, class U>
+		// Vector<T, U>::iterator Vector<T, U>::iterator::operator++(int __placeholder) {
+		// 	iterator tmp = *this;
+		// 	++ (*this);
+		// 	return tmp;
+		// }
+		// template <typename T, class U>
+		// Vector<T, U>::iterator& Vector<T, U>::iterator::operator--() {
+		// 	ptr_ --;
+		// 	return *this;
+		// }
+		// template <typename T, class U>
+		// Vector<T, U>::iterator Vector<T, U>::iterator::operator--(int __placeholder) {
+		// 	iterator tmp = *this;
+		// 	-- (*this);
+		// 	return tmp;
+		// }
+		// template <typename T, class U>
+		// Vector<T, U>::iterator& Vector<T, U>::iterator::operator+=(size_t __num) {
+		// 	ptr_ += __num;
+		// 	return *this;
+		// }
+		// template <typename T, class U>
+		// Vector<T, U>::iterator& Vector<T, U>::iterator::operator-=(size_t __num) {
+		// 	ptr_ -= __num;
+		// 	return *this;
+		// }
+		// template <typename T, class U>
+		// Vector<T, U>::iterator& Vector<T, U>::iterator::operator+(size_t __num) {
+		// 	ptr_ += __num;
+		// 	return *this;
+		// }
+		// template <typename T, class U>
+		// Vector<T, U>::iterator& Vector<T, U>::iterator::operator-(size_t __num) {
+		// 	ptr_ += __num;
+		// 	return *this;
+		// }
+		// template <typename T, class U>
+		// Vector<T, U>::iterator Vector<T, U>::iterator::operator+(const Vector<T, U>::iterator& __num) {
+		// 	return Vector<T, U>::iterator::iterator(ptr_ + __num -> ptr);
+		// }
+		// template <typename T, class U>
+		// Vector<T, U>::iterator Vector<T, U>::iterator::operator-(const Vector<T, U>::iterator& __num) {
+		// 	return Vector<T, U>::iterator::iterator(ptr_ - __num -> ptr);
+		// }
+		// template <typename T, class U>
+		// bool Vector<T, U>::iterator::operator<(const Vector<T, U>::iterator& __num) {
+		// 	return ptr_ < __num -> ptr;
+		// }
+		// template <typename T, class U>
+		// bool Vector<T, U>::iterator::operator>(const Vector<T, U>::iterator& __num) {
+		// 	return ptr_ > __num -> ptr;
+		// }
+		// template <typename T, class U>
+		// bool Vector<T, U>::iterator::operator<=(const Vector<T, U>::iterator& __num) {
+		// 	return ptr_ <= __num -> ptr;
+		// }
+		// template <typename T, class U>
+		// bool Vector<T, U>::iterator::operator>=(const Vector<T, U>::iterator& __num) {
+		// 	return ptr_ >= __num -> ptr;
+		// }
+		// template <typename T, class U>
+		// bool Vector<T, U>::iterator::operator==(const Vector<T, U>::iterator& __num) {
+		// 	return ptr_ == __num -> ptr;
+		// }
+		// template <typename T, class U>
+		// bool Vector<T, U>::iterator::operator!=(const Vector<T, U>::iterator& __num) {
+		// 	return ptr_ != __num -> ptr;
+		// }
+		template <typename T, class U>
+		Vector<T, U>::iterator Vector<T, U>::begin() {
+			return Vector<T, U>::iterator(vector_);
+		}
+		template <typename T, class U>
+		Vector<T, U>::iterator Vector<T, U>::end() {
+			return Vector<T, U>::iterator(vector_ + size_);
+		}
 		template <typename T, class U>
 		Vector<T, U>::Vector() : size_(0), capacity_(0) {}
 		template <typename T, class U>
@@ -87,3 +180,90 @@ namespace tla {
 }
 
 #endif // _VECTOR_CPP_
+
+/*
+template <typename T, class U>
+		Vector<T, U>::iterator::iterator(T* ptr) : ptr_(ptr) {}
+		template <typename T, class U>
+		T& Vector<T, U>::iterator::operator*() const {
+			return *ptr_;
+		}
+		template <typename T, class U>
+		T* Vector<T, U>::iterator::operator->() {
+			return ptr_;
+		}
+		template <typename T, class U>
+		Vector<T, U>::iterator& Vector<T, U>::iterator::operator++() {
+			ptr_ ++;
+			return *this;
+		}
+		template <typename T, class U>
+		Vector<T, U>::iterator Vector<T, U>::iterator::operator++(int __placeholder) {
+			iterator tmp = *this;
+			++ (*this);
+			return tmp;
+		}
+		template <typename T, class U>
+		Vector<T, U>::iterator& Vector<T, U>::iterator::operator--() {
+			ptr_ --;
+			return *this;
+		}
+		template <typename T, class U>
+		Vector<T, U>::iterator Vector<T, U>::iterator::operator--(int __placeholder) {
+			iterator tmp = *this;
+			-- (*this);
+			return tmp;
+		}
+		template <typename T, class U>
+		Vector<T, U>::iterator& Vector<T, U>::iterator::operator+=(size_t __num) {
+			ptr_ += __num;
+			return *this;
+		}
+		template <typename T, class U>
+		Vector<T, U>::iterator& Vector<T, U>::iterator::operator-=(size_t __num) {
+			ptr_ -= __num;
+			return *this;
+		}
+		template <typename T, class U>
+		Vector<T, U>::iterator& Vector<T, U>::iterator::operator+(size_t __num) {
+			ptr_ += __num;
+			return *this;
+		}
+		template <typename T, class U>
+		Vector<T, U>::iterator& Vector<T, U>::iterator::operator-(size_t __num) {
+			ptr_ += __num;
+			return *this;
+		}
+		template <typename T, class U>
+		Vector<T, U>::iterator Vector<T, U>::iterator::operator+(const Vector<T, U>::iterator& __num) {
+			return Vector<T, U>::iterator::iterator(ptr_ + __num -> ptr);
+		}
+		template <typename T, class U>
+		Vector<T, U>::iterator Vector<T, U>::iterator::operator-(const Vector<T, U>::iterator& __num) {
+			return Vector<T, U>::iterator::iterator(ptr_ - __num -> ptr);
+		}
+		template <typename T, class U>
+		bool Vector<T, U>::iterator::operator<(const Vector<T, U>::iterator& __num) {
+			return ptr_ < __num -> ptr;
+		}
+		template <typename T, class U>
+		bool Vector<T, U>::iterator::operator>(const Vector<T, U>::iterator& __num) {
+			return ptr_ > __num -> ptr;
+		}
+		template <typename T, class U>
+		bool Vector<T, U>::iterator::operator<=(const Vector<T, U>::iterator& __num) {
+			return ptr_ <= __num -> ptr;
+		}
+		template <typename T, class U>
+		bool Vector<T, U>::iterator::operator>=(const Vector<T, U>::iterator& __num) {
+			return ptr_ >= __num -> ptr;
+		}
+		template <typename T, class U>
+		bool Vector<T, U>::iterator::operator==(const Vector<T, U>::iterator& __num) {
+			return ptr_ == __num -> ptr;
+		}
+		template <typename T, class U>
+		bool Vector<T, U>::iterator::operator!=(const Vector<T, U>::iterator& __num) {
+			return ptr_ != __num -> ptr;
+		}
+*/

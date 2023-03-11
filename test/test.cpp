@@ -1,6 +1,7 @@
 #include "TLA/math/vector.h"
 #include "TLA/exceptions.h"
 #include <iostream>
+#include <iterator>
 
 int main() {
 	tla::vector::Vector <int> myVec{5, 4, 7, 8};
@@ -20,4 +21,10 @@ int main() {
 		}
 		std::cout << '\n' << "----------\n";
 	}
+
+	for (tla::vector::Vector <int>::iterator it = myVec.begin(); it != myVec.end(); it ++) {
+		std::cout << *it << ' ';
+	}
+	std::cout << '\n';
+	// TODO std::next(it)
 }
